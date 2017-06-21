@@ -53,7 +53,7 @@ function get_dirname_in_node_modules(){
   // npm 3.x set babel in entry file
   require('babel-core/register')({
     plugins: [require('babel-plugin-add-module-exports'), require('babel-plugin-transform-es2015-modules-commonjs')],
-    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3')],
+    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3'), 'react'],
     babelrc: false
   })
 }
@@ -71,7 +71,7 @@ function get_dirname_in_parent(){
   // npm 2.x set babel in entry file
   require('babel-core/register')({
     plugins: [require('babel-plugin-add-module-exports'), require('babel-plugin-transform-es2015-modules-commonjs')],
-    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3')],
+    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3'), 'react'],
     babelrc: false
   })
 }

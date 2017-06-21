@@ -1,9 +1,15 @@
 const Koa = require('koa');
 const app = new Koa();
+import React from 'react';
+import jsxToString from 'jsx-to-string';
+
+let div = <div style="font-size: 50px">
+  hello world
+</div>;
 
 // response
 app.use(ctx => {
-  ctx.body = 'Hello Koa in app.js';
+  ctx.body = jsxToString(div);
 });
 
 app.listen(3000);
