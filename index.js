@@ -52,8 +52,10 @@ function get_dirname_in_node_modules(){
   console.log('3babel presets path = ' + dir)
   // npm 3.x set babel in entry file
   require('babel-core/register')({
-    plugins: [require('babel-plugin-add-module-exports'), require('babel-plugin-transform-es2015-modules-commonjs')],
-    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3'), 'react'],
+    plugins: [require('babel-plugin-add-module-exports'), require('babel-plugin-transform-es2015-modules-commonjs'),  ["transform-react-jsx", {
+          "pragma": "h" 
+        }]],
+    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3')],
     babelrc: false
   })
 }
@@ -70,8 +72,10 @@ function get_dirname_in_parent(){
 
   // npm 2.x set babel in entry file
   require('babel-core/register')({
-    plugins: [require('babel-plugin-add-module-exports'), require('babel-plugin-transform-es2015-modules-commonjs')],
-    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3'), 'react'],
+    plugins: [require('babel-plugin-add-module-exports'), require('babel-plugin-transform-es2015-modules-commonjs'),  ["transform-react-jsx", {
+          "pragma": "h"
+        }]],
+    presets: [require('babel-preset-es2015-node5'), require('babel-preset-stage-3')],
     babelrc: false
   })
 }

@@ -36,9 +36,13 @@
     "babel-preset-stage-3": "^6.5.0",
     "debug": "2.2.0",
     "jsx-to-string": "^1.1.0",
+    "preact": "^8.1.0",
+    "preact-render-to-string": "^3.6.3",
+    "preact-server-renderer": "^0.2.0",
     "react": "^15.6.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "co": "^4.6.0",
     "coffee": "^3.2.1",
     "koa": "^2.0.0",

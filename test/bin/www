@@ -1,15 +1,19 @@
 const Koa = require('koa');
 const app = new Koa();
-import React from 'react';
-import jsxToString from 'jsx-to-string';
 
-let div = <div style="font-size: 50px">
-  hello world
+import { h } from 'preact';
+import render from 'preact-render-to-string';
+
+let div = <div>
+  {
+    Array(10).fill(1).map((i,j) => <span
+style={`font-size:${j*10+10}px;color:#${j}${j}${j}`}>{j}</span>)
+  }
 </div>;
 
 // response
 app.use(ctx => {
-  ctx.body = jsxToString(div);
+  ctx.body = render(div);
 });
 
 app.listen(3000);
