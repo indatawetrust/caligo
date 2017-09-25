@@ -60,3 +60,5 @@ or
 ```
 pm2 start caligo -- app.js --watch
 ```
+
+- [ ] cli tool
