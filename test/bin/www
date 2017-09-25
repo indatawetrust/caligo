@@ -4,7 +4,7 @@ const app = new Koa();
 import { h } from 'preact';
 import render from 'preact-render-to-string';
 
-let div = <div style="background-color:red">
+let div = <div style="background-color:#9d8;padding:10px">
   {
     Array(10).fill(1).map((i,j) => <span
 style={`font-size:${j*10+10}px;color:#${j}${j}${j}`}>{j}</span>)
