@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Koa = require('koa');
 const app = new Koa();
 
@@ -15,29 +16,10 @@ app.use(convert(json()));
 app.use(convert(logger()));
 app.use(require('koa-static')(__dirname + '/public', { maxage: 9999999 }));
 
-import {h} from 'preact';
 import render from 'preact-render-to-string';
 
 app.use(ctx => {
-  let div = (
-    <div>
-      <ul className="nav nav-tabs">
-        <li className="active"><a data-toggle="tab" href="#home">Home</a></li>
-        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-      </ul>
-
-      <div className="tab-content">
-        <div id="home" className="tab-pane fade in active">
-          <h3>HOME</h3>
-          <p>Some content.</p>
-        </div>
-        <div id="menu1" className="tab-pane fade">
-          <h3>Menu 1</h3>
-          <p>Some content in menu 1.</p>
-        </div>
-      </div>
-    </div>
-  );
+  const div = require('./index.jsx')
 
   const html = render(div);
 
