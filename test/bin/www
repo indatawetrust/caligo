@@ -1,19 +1,47 @@
 const Koa = require('koa');
 const app = new Koa();
 
-import { h } from 'preact';
+const router = require('koa-router')();
+const co = require('co');
+const convert = require('koa-convert');
+const json = require('koa-json');
+const onerror = require('koa-onerror');
+const bodyparser = require('koa-bodyparser')();
+const logger = require('koa-logger');
+
+// middlewares
+app.use(convert(bodyparser));
+app.use(convert(json()));
+app.use(convert(logger()));
+app.use(require('koa-static')(__dirname + '/public', { maxage: 9999999 }));
+
+import {h} from 'preact';
 import render from 'preact-render-to-string';
 
-let div = <div style="background-color:#9d8;padding:10px">
-  {
-    Array(10).fill(1).map((i,j) => <span
-style={`font-size:${j*10+10}px;color:#${j}${j}${j}`}>{j}</span>)
-  }
-</div>;
-
-// response
 app.use(ctx => {
-  ctx.body = render(div);
+  let div = (
+    <div>
+      <ul className="nav nav-tabs">
+        <li className="active"><a data-toggle="tab" href="#home">Home</a></li>
+        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+      </ul>
+
+      <div className="tab-content">
+        <div id="home" className="tab-pane fade in active">
+          <h3>HOME</h3>
+          <p>Some content.</p>
+        </div>
+        <div id="menu1" className="tab-pane fade">
+          <h3>Menu 1</h3>
+          <p>Some content in menu 1.</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const html = render(div);
+
+  ctx.body = `<!DOCTYPE html><html><body>${html}<script src="/main.js"></script></body></html>`;
 });
 
 app.listen(3000);
