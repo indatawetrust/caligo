@@ -2,11 +2,12 @@
 
 const copydir = require('copy-dir');
 const path = require('path');
+const runner = require('./runner.js');
 const ora = require('ora');
 const { exec } = require('child_process');
 
 require('yargs')
-  .command('init', 'start the server', (yargs) => {
+  .command('init', 'create project', (yargs) => {
     yargs.option('dir', {
       describe: 'project directory',
       default: '.'
@@ -25,5 +26,19 @@ require('yargs')
         });
       }
     })
+  })
+  .command('start', 'start the server', (yargs) => {
+    yargs.option('dir', {
+      describe: 'project directory',
+      default: '.'
+    })
+  }, (argv) => {
+    if (! argv[1]){
+      argv[1] = 'bin/www'
+      console.log('default entry is bin/www')
+    }
+    var entry = require('path').resolve(process.cwd(),  argv[1])
+
+    runner(entry, is_cli=true);
   })
   .argv
