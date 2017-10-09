@@ -16,16 +16,14 @@ app.use(convert(json()));
 app.use(convert(logger()));
 app.use(require('koa-static')(__dirname + '/public', { maxage: 9999999 }));
 
-import render from 'preact-render-to-string';
+// app.use(ctx => {
 
-app.use(ctx => {
-  const div = require('./index.jsx')
+// });
 
-  const html = render(div);
+const index = require('../routes/index');
 
-  ctx.body = `<!DOCTYPE html><html><body>${html}<script src="/main.js"></script></body></html>`;
-});
+router.use('/', index.routes(), index.allowedMethods());
+
+app.use(router.routes(), router.allowedMethods());
 
 app.listen(3000);
-
-module.exports = app;
